@@ -18,7 +18,14 @@ void loop()
 {
   // check to see if it's time to change the state of the LED
   unsigned long currentMillis = millis();
- 
+  if(previousMillis == 0)
+  {  
+    delay(15000);
+
+    ledState = HIGH;  // turn it on
+    previousMillis = currentMillis;   // Remember the time
+    digitalWrite(ledPin, ledState);    // Update the actual LED
+  }
   if((ledState == HIGH) && (currentMillis - previousMillis >= OnTime))
   {
     ledState = LOW;  // Turn it off
